@@ -15,9 +15,9 @@ from tensorflow.keras import layers
 from tensorflow.keras.layers.experimental import preprocessing
 from tensorflow.keras.layers.experimental import RandomFourierFeatures
 from tensorflow.keras.optimizers import SGD
-opt = SGD(lr=0.01)
+opt = SGD(lr=0.03)
 
-malicious_combined = pd.read_csv("additional_small.csv", header=None)
+malicious_combined = pd.read_csv("closenetwork_large_v2.csv", header=None)
 malicious_train = pd.read_csv("malicious_train_bitcoinabuse.csv", header=None)
 malicious_test = pd.read_csv("malicious_test_bitcoinabuse.csv", header=None)
 
@@ -25,8 +25,8 @@ malicious_train.head()
 malicious_test.head()
 
 dataset_combined = malicious_combined.values
-X_Combined = dataset_combined[:, 0:24].astype(float)
-Y_Combined = dataset_combined[:, 24]
+X_Combined = dataset_combined[:, 0:18].astype(float)
+Y_Combined = dataset_combined[:, 18]
 
 dataset = malicious_train.values
 X = dataset[:, 0:4].astype(float)
@@ -39,11 +39,21 @@ Y_Test = dataset_test[:, 4]
 # https://keras.io/guides/sequential_model/
 def create_baseline():
 	# create model
+	
 	malicious_model = tf.keras.Sequential([
-	layers.Dense(25, activation='relu'),
-	layers.Dense(13, activation='sigmoid'),
+	layers.Dense(100, activation='sigmoid'),
+	layers.Dense(50, activation='sigmoid'),
+	layers.Dense(25, activation='sigmoid'),
+	layers.Dense(12, activation='sigmoid'),
 	layers.Dense(1, activation='sigmoid')
     ])
+	'''
+	malicious_model = tf.keras.Sequential([
+	layers.Dense(19, activation='relu'),
+	layers.Dense(10, activation='sigmoid'),
+	layers.Dense(1, activation='sigmoid')
+    ])
+	'''
 	malicious_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy', 'mean_absolute_percentage_error'])
 	return malicious_model
 

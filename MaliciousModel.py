@@ -17,7 +17,7 @@ from tensorflow.keras.layers.experimental import RandomFourierFeatures
 from tensorflow.keras.optimizers import SGD
 opt = SGD(lr=0.03)
 
-malicious_combined = pd.read_csv("closenetwork_large_v2.csv", header=None)
+malicious_combined = pd.read_csv("ftx_large_v2.csv", header=None)
 malicious_train = pd.read_csv("malicious_train_bitcoinabuse.csv", header=None)
 malicious_test = pd.read_csv("malicious_test_bitcoinabuse.csv", header=None)
 
@@ -25,8 +25,8 @@ malicious_train.head()
 malicious_test.head()
 
 dataset_combined = malicious_combined.values
-X_Combined = dataset_combined[:, 0:18].astype(float)
-Y_Combined = dataset_combined[:, 18]
+X_Combined = dataset_combined[:, 0:19].astype(float)
+Y_Combined = dataset_combined[:, 19]
 
 dataset = malicious_train.values
 X = dataset[:, 0:4].astype(float)

@@ -4,15 +4,14 @@ import math
 import sys
 
 already_recorded = {}
-# look into accounting for the frequency of a given sender / receiver
-# --> weigh their information more heavily than others?
+
 with open("data_filtered/Filtered_NonMalicious_Records_Detailed_CloseNetwork.csv", mode = "r", encoding = "ISO-8859-1") as file:
     csvFile = csv.reader(file)
     for lines in csvFile:
         address = lines[0]
         already_recorded[address] = 1
 
-# next address has 178 senders, 158 receivers, reason for installing token rotating system
+# Fetch data from blockchain, calculated close network features, and store in file
 with open("data_filtered/Filtered_NonMalicious_Records_Detailed.csv", mode = "r", encoding = "ISO-8859-1") as readFile, \
     open("data_filtered/Filtered_NonMalicious_Records_Detailed_CloseNetwork.csv", mode = "a", newline="") as writeFile:
     csv_reader = csv.reader(readFile)

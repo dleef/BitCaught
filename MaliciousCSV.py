@@ -8,6 +8,7 @@ filtered_addresses = {}
 def most_frequent(List): 
     return max(set(List), key = List.count) 
 
+# Cleaning and noisiness management
 with open("Malicious_Records.csv", mode = "r", encoding = "ISO-8859-1") as file:
     csvFile = csv.reader(file)
     for lines in csvFile:
@@ -30,8 +31,8 @@ with open("Malicious_Records.csv", mode = "r", encoding = "ISO-8859-1") as file:
     for k in address_reportcount:
         if (address_reportcount[k] > 5):
             filtered_addresses[k] = [address_reportcount[k], most_frequent(address_abusetype[k])]
-print(filtered_addresses)
 
+# Fetch data from blockchain, calculate basic features, and store in file
 with open("Filtered_Malicious_Records_Detailed.csv", "a") as csvfile:
     fieldnames = ["wallet_address", "malicious", "malicious_type", "bitcoin_spent", "bitcoin_received", "total_balance", "total_transactions"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

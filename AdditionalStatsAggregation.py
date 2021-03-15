@@ -7,8 +7,6 @@ import dateutil.parser
 
 already_recorded = {}
 
-# look into accounting for the frequency of a given sender / receiver
-# --> weigh their information more heavily than others?
 with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist_FTX.csv", mode = "r", encoding = "ISO-8859-1") as file:
     csvFile = csv.reader(file)
     for lines in csvFile:
@@ -16,10 +14,7 @@ with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist_FTX.csv", mode 
         already_recorded[address] = 1
 
 
-# N_INPUTS, N_OUTPUTS, NUM_SPENT, NUM_RECEIVED, and FRIENDS ARE HANDLED BY BLOCKCHAININFO API
-
-# this is exclusively for fetching f_tx attribute
-# next address has 178 senders, 158 receivers, reason for installing token rotating system
+# Fetch data from blockchain, calculate transaction frequency feature, and store in file
 with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist_CloseNetwork.csv", mode = "r", encoding = "ISO-8859-1") as readFile, \
     open("data_filtered/Filtered_Malicious_Records_BitcoinHeist_FTX.csv", mode = "a", newline="") as writeFile:
     csv_reader = csv.reader(readFile)
@@ -45,7 +40,6 @@ with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist_CloseNetwork.cs
                 f_tx = num_tx / delta.days
 
                 row.append(f_tx)
-                # row.append(num_tx)
                 csv_writer.writerow(row)
                 print(count)
         count += 1

@@ -4,6 +4,7 @@ import requests
 malicious_wallets = []
 already_recorded = {}
 # nonmalicious_wallets = []
+
 with open("data_unfiltered/BitcoinHeistData.csv", mode = "r", encoding = "ISO-8859-1") as file:
     csvFile = csv.reader(file)
     for lines in csvFile:
@@ -22,6 +23,7 @@ with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist.csv", "r", enco
         address = lines[0]
         already_recorded[address] = 1
 
+# Fetch data from blockchain and store in file
 with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist.csv", "a") as csvfile:
     fieldnames = ["wallet_address", "malicious", "bitcoin_spent", "bitcoin_received", "total_balance", "total_transactions"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

@@ -23,7 +23,6 @@ with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist.csv", mode = "r
         if key not in all_malicious:
             all_malicious[key] = 1
 
-
 with open("data_unfiltered/NonMalicious_Records.csv", mode = "r", encoding = "ISO-8859-1") as file:
     csvFile = csv.reader(file)
     count = 0
@@ -44,6 +43,7 @@ with open("data_filtered/Filtered_NonMalicious_Records_Detailed.csv", mode = "r"
         already_recorded[address] = 1
 
 
+# Fetch data from blockchain and store in file
 with open("data_filtered/Filtered_NonMalicious_Records_Detailed.csv", "a") as csvfile, \
     open("data_unfiltered/NonMalicious_Records.csv", mode = "r", encoding = "ISO-8859-1") as file:
     csvFile = csv.reader(file)

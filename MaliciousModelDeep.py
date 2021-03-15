@@ -27,9 +27,13 @@ Y_Combined = dataset_combined[:, 18]
 # https://keras.io/guides/sequential_model/
 def create_baseline():
 	# create model
+	
 	malicious_model = tf.keras.Sequential([
-	layers.Input(shape=(18,)),
-	layers.Dense(175, activation='sigmoid'),
+    layers.Input(shape=(18,)),
+	layers.Dense(50, activation='sigmoid'),
+	layers.Dense(40, activation='sigmoid'),
+	layers.Dense(25, activation='sigmoid'),
+	layers.Dense(10, activation='sigmoid'),
 	layers.Dense(1, activation='sigmoid')
     ])
 	
@@ -47,13 +51,14 @@ def create_svm():
 	malicious_model.compile(loss=tf.keras.losses.hinge, optimizer='adam', metrics=['accuracy'])
 	return malicious_model
 
-
-
 '''
 start_time = time.time()
 malicious_model = tf.keras.Sequential([
 layers.Input(shape=(4,)),
 layers.Dense(50, activation='sigmoid'),
+layers.Dense(40, activation='sigmoid'),
+layers.Dense(25, activation='sigmoid'),
+layers.Dense(10, activation='sigmoid'),
 layers.Dense(1, activation='sigmoid')
 ])
 malicious_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy', 'mean_absolute_percentage_error'])
@@ -75,6 +80,7 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
+
 '''
 
 # not enough data to do too many epochs

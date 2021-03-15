@@ -23,7 +23,7 @@ with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist.csv", "r", enco
         address = lines[0]
         already_recorded[address] = 1
 
-# Fetch data from blockchain and store in file
+# Fetch data from blockchain, calculate basic and store in file
 with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist.csv", "a") as csvfile:
     fieldnames = ["wallet_address", "malicious", "bitcoin_spent", "bitcoin_received", "total_balance", "total_transactions"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -31,7 +31,7 @@ with open("data_filtered/Filtered_Malicious_Records_BitcoinHeist.csv", "a") as c
     total = len(malicious_wallets)
     count = 0
     start_recording = False
-    tokens = ["0b564c84ec664dcf8f88deccb18682b0", "0ede61cea6d44b24ac7a2392335ea1d6", "ce86fd4dfb414254841743aa6991aab0", "3e107ad6f05741fdab14a596595abcef", "362634d27a3c4750ab98e5e8bbb92ffa", "6295bc12efb7407ba74b49020048d423", "abe2d75cebe840b38f3f321f09751bec", "fad305b171bf4b5392b2e17728ed282e", "2a413571a5e7463b9bca647a67a2ed22", "3107afc4db9c4500ba53b3a4af9338ca", "5160d81762a8473981f253833a177578", "e697c2e69ba94cf98543ecba045127b7", "511bfa9daa3f4d9f9696163aaa007738", "cbe84c1ea08542de86a88655b7d81563", "207c72ae6ebb43d69521234f3a17de13"]
+    tokens = ["15 API keys go here"]
     tokenIndex = 0
     for add in malicious_wallets:
         if (start_recording and add not in already_recorded):

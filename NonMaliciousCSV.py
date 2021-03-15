@@ -61,7 +61,7 @@ with open("data_filtered/Filtered_NonMalicious_Records_Detailed.csv", "a") as cs
         if (add not in temp_already_recorded_index):
             temp_already_recorded_index[add] = 1
             if add not in all_malicious and add not in already_recorded:
-                response = requests.get("https://api.blockcypher.com/v1/btc/main/addrs/" + add + "?token=207c72ae6ebb43d69521234f3a17de13")
+                response = requests.get("https://api.blockcypher.com/v1/btc/main/addrs/" + add + "?token=APIkeygoeshere")
                 if (response.status_code == 200):
                     result = response.json()
                     bitcoin_received = result['total_received']

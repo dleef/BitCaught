@@ -44,7 +44,7 @@ with open("Filtered_Malicious_Records_Detailed.csv", "a") as csvfile:
         if (start_recording):
             malicious = True
             malicious_type = filtered_addresses[add][1]
-            response = requests.get("https://api.blockcypher.com/v1/btc/main/addrs/" + add + "?token=362634d27a3c4750ab98e5e8bbb92ffa")
+            response = requests.get("https://api.blockcypher.com/v1/btc/main/addrs/" + add + "?token=APIkeygoeshere")
             if (response.status_code == 200):
                 result = response.json()
                 bitcoin_received = result['total_received']
